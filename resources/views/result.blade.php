@@ -1,13 +1,12 @@
 @extends('layouts.master')
 
 @section('content')
-
+      
       <div class="page-content-product">
          <div class="main-product">
             <div class="container">
                <div class="row clearfix">
-                  <div class="find-box">
-                     <h1>Find your Lucky Tickets</h1>
+                  <div class="find-box-result">
                      <div class="product-sh">
                      {!! Form::open(array('route' => 'tickets.search','method'=>'POST')) !!}
                         <div class="col-sm-3">
@@ -63,6 +62,39 @@
                         <p>Or <a href="#"> click here </a>to search More Methods</p>
                      </div>
                   </div>
+               </div>
+               @if($tickets)
+               @foreach ($tickets as $key => $ticket)
+               <div class="row clearfix">
+                  <div class="col-md-4 col-sm-6 wow fadeIn" data-wow-delay="0.0s">
+                    <div class="prod-box">
+                        <div class="prod-dit clearfix">
+                        <img src="{{ asset('img/logo.png') }}" class="icon-small" alt="">
+                           <div class="dit-t clearfix">
+                              <div class="left-ti">
+                                 <h4>{{ $ticket->name }}</h4>
+                                 <p>By <span>{{ $ticket->owner }}</span></p>
+                              </div>
+                              @if ($ticket->status == 1)
+                              <a href="#" style="background-color:#45c216; color:#fff"><i class="fa fa-shopping-cart"></i> Buy </a>
+                              @else
+                              <a href="#" style="background-color:#bf161d; color:#fff">Not Availabel</a>
+                              @endif
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               @endforeach 
+              
+                  <div class="categories_link">
+                  {{ $tickets->links() }}
+                  </div>
+                  @else
+                  <div class="fill">
+                     <h4>There is not result with same keyword</h4>
+                  </div>
+                  @endif
                </div>
             </div>
          </div>
