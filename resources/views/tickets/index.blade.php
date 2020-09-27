@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
 <div class='row'>
@@ -29,6 +29,7 @@
     <tr>
     <td>{{ ++$i }}</td>
     <td>{{ $ticket->name }}</td>
+    <td>  @if ($ticket->status == 1) Availabel @else Not Availabel @endif</td>
     <td>
         <a class='btn btn-info' href='{{ route("tickets.show",$ticket->id) }}'>Show</a>
         <!-- @can('role-edit') -->

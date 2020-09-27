@@ -33,7 +33,7 @@
                         <span class="icon-bar"></span> 
                         <span class="icon-bar"></span> 
                         </button>
-                        <a href="index.html" class="navbar-brand"><img src="{{ asset('img/logo.png') }}" alt="" /></a>
+                        <a href="{{ route('welcome') }}" class="navbar-brand"><img src="{{ asset('img/logo.png') }}" alt="" /></a>
                      </div>
                      
                   </div>
@@ -42,15 +42,15 @@
                         <div class="help-r hidden-xs">
                            <div class="help-box">
                               <ul>
-                                 <li> <a data-toggle="modal" data-target="#myModal" href="#"> <span>Change</span> <img src="img/flag.png" alt="" /> </a> </li>
-                                 <li> <a href="#"><img class="h-i" src="img/help-icon.png" alt="" /> Help </a> </li>
+                                 <li> <a data-toggle="modal" data-target="#myModal" href="#"> <span>ဘာသာစကားပြောင်းရန်</span> <img src="img/flag.png" alt="" /> </a> </li>
+                                 <li> <a href="#"><img class="h-i" src="img/help-icon.png" alt="" /> အကူအညီ </a> </li>
                                  @guest
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('ဝင်ရန်') }}</a>
                                 </li>
                                 @if (Route::has('register'))
                                     <li>
-                                        <a class="custom-b" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                        <a class="custom-b" href="{{ route('register') }}">{{ __('စာရင်းသွင်းရန်') }}</a>
                                     </li>
                                 @endif
                                 @else
@@ -88,7 +88,7 @@
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                        <ul>
                                           <li>
-                                          <a class="dropdown-item" href="{{ route('profile') }}">{{ __('Profile') }}</a>
+                                          <!-- <a class="dropdown-item" href="{{ route('profile') }}">{{ __('မ') }}</a> -->
                                           </li>
                                           <li>
                                           <a class="dropdown-item" href="{{ route('logout') }}"
@@ -110,9 +110,9 @@
                         <div class="nav-b hidden-xs">
                            <div class="nav-box">
                               <ul>
-                                <li><a href="howitworks.html">Winning Ticket</a></li>
-                                 <li><a href="howitworks.html">Be partner</a></li>
-                                 <li><a href="about-us.html">Terms & Conditions</a></li>
+                              <li><a href="{{ route('welcome') }}">လက်မှတ်ဝယ်ရန်</a></li>
+                                <li><a href="#">ထီပေါက်စဥ်</a></li>
+                                 <li><a href="#">ပါတနာလျောက်ထားရန်</a></li>
                               </ul>
                            </div>
                         </div>
@@ -130,11 +130,11 @@
             <div class="modal-content">
                <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Change</h4>
+                  <h4 class="modal-title">ဘာသာစကားပြောင်းရန်</h4>
                </div>
                <div class="modal-body">
                   <ul>
-                     <li><a href="#"><img src="{{ asset('img/flag-up-2.png') }}" alt="" /> Myanmar </a></li>
+                     <li><a href="#"><img src="{{ asset('img/flag-up-2.png') }}" alt="" /> မြန်မာ </a></li>
                      <li><a href="#"><img src="{{ asset('img/flag-up-1.png') }}" alt="" /> English</a></li>
                   </ul>
                </div>
@@ -143,9 +143,35 @@
       </div>
       <div id="sidebar" class="top-nav">
          <ul id="sidebar-nav" class="sidebar-nav">
-            <li><a href="#">Help</a></li>
-            <li><a href="howitworks.html">How it works</a></li>
-            <li><a href="#">chamb for Business</a></li>
+            @guest
+            @else
+            <li><a href="{{ route('home') }}">ပင်မ</a></li>
+            @endguest
+            <li><a href="{{ route('welcome') }}">လက်မှတ်ဝယ်ရန်</a></li>
+            <li><a href="#">ထီပေါက်စဥ်</a></li>
+            <li><a href="#">ပါတနာလျောက်ထားရန်</a></li>
+     
+            <li><a href="#">အကူအညီ</a></li>
+            @guest
+               <li><a class="nav-link" href="{{ route('login') }}">{{ __('ဝင်ရန်') }}</a></li>
+               @if (Route::has('register'))
+               <li><a class="custom-b" href="{{ route('register') }}">{{ __('စာရင်းသွင်းရန်') }}</a></li>
+               @endif
+            @else
+               <li><a href="{{route('tickets.mytickets')}}">မိမိလက်မှတ်များ</a></li>
+               <li>
+                  <a class="dropdown-item" href="{{ route('logout') }}"
+                     onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+                     ထွက်ရန်
+                  </a>
+
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                     @csrf
+                  </form>
+               </li>
+              
+            @endguest
          </ul>
       </div>
             @yield('content')
@@ -162,7 +188,7 @@
             <div class="container">
                <div class="row">
                   <div class="col-md-8">
-                     <p><img width="90" src="{{ asset('img/logo.png') }}" alt="#" style="margin-top: -5px;" /> All Rights Reserved. Company Name © 2018</p>
+                     <p><img width="90" src="{{ asset('img/logo.png') }}" alt="#" style="margin-top: -5px;" /> All Rights Reserved. Company Name © ၂၀၂၀</p>
                   </div>
                   <div class="col-md-4">
                      <ul class="list-inline socials">
@@ -188,7 +214,8 @@
                         </li>
                      </ul>
                      <ul class="right-flag">
-                     <li> <a data-toggle="modal" data-target="#myModal" href="#"> <span>Change</span> <img src="img/flag.png" alt="" /> </a> </li>
+                     <!-- <li><a href="#">စည်းကမ်းချက်များ</a></li> -->
+                     <li> <a data-toggle="modal" data-target="#myModal" href="#"> <span>ဘာသာစကားပြောင်းရန်</span> <img src="img/flag.png" alt="" /> </a> </li>
                      </ul>
                   </div>
                </div>

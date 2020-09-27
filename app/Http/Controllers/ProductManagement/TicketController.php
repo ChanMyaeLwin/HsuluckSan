@@ -4,7 +4,9 @@ namespace App\Http\Controllers\ProductManagement;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Tickets;
+use App\UserTickets;
 use DB;
 
 class TicketController extends Controller
@@ -23,7 +25,6 @@ class TicketController extends Controller
      */
     public function index(Request $request)
     {
-      
         $tickets = Tickets::orderBy('id','DESC')->paginate(5);
         return view('tickets.index',compact('tickets'))->with('i', ($request->input('page', 1)-1) * 5);
     }
@@ -114,8 +115,35 @@ class TicketController extends Controller
         if($request->input("ticket_no")){
         $ticket_no = $request->input("ticket_no");
         $tickets = Tickets::where('name','Like','%'.$ticket_no.'%')
-                ->where('status',1)->paginate(20);
+                ->orderby('status')->paginate(20);
             }
-        return view('result',compact('tickets'));
+        return view('result',compact('tickets','ticket_no'));
+    }
+
+    public function buytickets($id)
+    {
+        $ticket = Tickets::find($id);
+        return view('tickets.buyticket',compact('ticket'));
+    }
+
+    public function buyticket($id)
+    {
+        $ticketId = Tickets::find($id)->id;
+        $userId = Auth::user()->id;
+        $tickets = UserTickets::create(['user_id' => $userId,
+                    'ticket_id'=> $ticketId]);
+        $ticket = Tickets::find($id);
+        $ticket->status = 2;
+        $ticket->save();
+        return redirect()->route('welcome')->with('success','tickets created successfully');  
+    }
+
+    public function mytickets(Request $request)
+    {
+        $userId = Auth::user()->id;
+        $tickets = Tickets::Join('user_ticket','user_ticket.ticket_id','tickets.id')->where('user_ticket.user_id',$userId)
+        ->paginate(5);
+        return view('tickets.mytickets',compact('tickets'))->with('i', ($request->input('page', 1)-1) * 5);
+
     }
 }
