@@ -1,96 +1,77 @@
 @extends('layouts.master')
 
-@section('content')
-             <div class="page-content-product">
-         <div class="main-product">
-            <div class="container">
-               <div class="row clearfix">
-                     <h1>Dashboard</h1>
-               </div>
-               <div class="row clearfix">
-                     <div class="col-lg-3 col-sm-6 col-md-3">
-                     <a href="{{route('welcome')}}">
-                        <div class="box-img">
-                           <h4>လက်မှတ်ရှာရန်</h4>
-                           <p></p>
-                        </div>
-                     </a>
+@section('content') 
+<div class="main">
+      <div class="container">
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+         <!-- BEGIN SIDEBAR -->
+         <div class="sidebar col-md-3 col-sm-4">
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li class="active">Latest News</li>
+            </ul>
+            <ul class="list-group margin-bottom-25 sidebar-menu">
+              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Latest News 1</a></li>
+              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Latest News 2</a></li>
+              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Latest News 3</a></li>
+            </ul>
+          </div>
+          <!-- END SIDEBAR -->
+          <!-- BEGIN CONTENT -->
+          <div class="col-md-9 col-sm-7">
+            <div class="content-search margin-bottom-20">
+              <div class="row">
+                <div class="col-md-6">
+                  <h1>Search result for <em>You lucky Ticket</em></h1>
+                </div>
+                <div class="col-md-6">
+                  <form method="GET" action="{{ route('tickets.search') }}">
+                  @csrf
+                    <div class="input-group">
+                      <input type="text" name="ticket_no" placeholder="Search again" class="form-control" value="{{ $ticket_no }}">
+                      <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                      </span>
                     </div>
-                    <div class="col-lg-3 col-sm-6 col-md-3">
-                     <a href="{{route('balances.index')}}">
-                        <div class="box-img">
-                           <h4>လက်ကျန်ငွေစာရင်း</h4>
-                           <p></p>
-                        </div>
-                     </a>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 col-md-3">
-                     <a href="{{route('tickets.mytickets')}}">
-                        <div class="box-img">
-                           <h4>ဝယ်ထားသော လက်မှတ်များ</h4>
-                           <p></p>
-                        </div>
-                     </a>
-                    </div>   
-                    @can('role-edit')
-                    <div class="col-lg-3 col-sm-6 col-md-3">
-                     <a href="{{route('incomes.index')}}">
-                        <div class="box-img">
-                           <h4>ဝင်ငွေစာရင်း</h4>
-                           <p></p>
-                        </div>
-                     </a>
-                    </div>  
-                    @endcan
-                    @can('role-edit')
-                    <div class="col-lg-3 col-sm-6 col-md-3">
-                     <a href="{{ route('tickets.index') }}">
-                        <div class="box-img">
-                           <h4>လက်မှတ်များ</h4>
-                           <p></p>
-                        </div>
-                     </a>
-                    </div>  
-                    @endcan
-                    @can('role-edit')
-                    <div class="col-lg-3 col-sm-6 col-md-3">
-                     <a href="{{ route('users.index') }}">
-                        <div class="box-img">
-                           <h4>အသုံးပြုသူများ</h4>
-                           <p></p>
-                        </div>
-                     </a>
-                    </div>  
-                    @endcan
-                    @can('role-edit')
-                    <div class="col-lg-3 col-sm-6 col-md-3">
-                     <a href="{{ route('times.index') }}">
-                        <div class="box-img">
-                           <h4>အကြိမ်အရေအတွက်</h4>
-                           <p></p>
-                        </div>
-                     </a>
-                    </div>  
-                    @endcan
-                    @can('role-edit')
-                    <div class="col-lg-3 col-sm-6 col-md-3">
-                     <a href="{{ route('roles.index') }}">
-                        <div class="box-img">
-                           <h4>ရာထူးများ</h4>
-                           <p></p>
-                        </div>
-                     </a>
-                    </div>  
-                    @endcan
-               </div> 
-             
-              
-                 
-               </div>
+                  </form>
+                </div>
+              </div>
             </div>
-         </div>
+            
+            <!-- BEGIN PRODUCT LIST -->
+            <div class="row product-list">
+              <!-- PRODUCT ITEM START -->
+              @foreach ($tickets as $key => $ticket)
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="product-item">
+                  <!-- <div class="pi-img-wrapper">
+                    <img src="assets/pages/img/products/model1.jpg" class="img-responsive" alt="Berry Lace Dress">
+                  </div> -->
+                  <h3><a href="shop-item.html">{{ $ticket->name }}</a></h3>
+                  @if($ticket->status == 1)
+                     <div class="pi-price pi-available">Available</div>
+                     <a href="javascript:;" class="btn btn-default add2cart">Buy Now</a>
+                  @else
+                     <div class="pi-price pi-unavailable">Unavailable</div>
+                  @endif
+              
+                </div>
+              </div>
+              @endforeach
+              <!-- PRODUCT ITEM END -->
+            </div>
+            
+            <!-- END PRODUCT LIST -->
+            <!-- BEGIN PAGINATOR -->
+            <div class="row">>{!! $tickets->render() !!}</div>
+            <!-- END PAGINATOR -->
+          </div>
+          <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
       </div>
-      
+    </div>
       
 
 @endsection

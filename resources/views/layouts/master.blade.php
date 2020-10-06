@@ -1,236 +1,299 @@
 <!DOCTYPE html>
+<!--
+Template: Metronic Frontend Freebie - Responsive HTML Template Based On Twitter Bootstrap 3.3.4
+Version: 1.0.0
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Like: www.facebook.com/keenthemes
+Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+-->
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
 <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <title>ဆုလာဘ်စံ - အွန်လိုင်းထီဆိုင်</title>
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <!--enable mobile device-->
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <!--fontawesome css-->
-      <link rel="stylesheet" href="css/font-awesome.min.css">
-      <!--bootstrap css-->
-      <link rel="stylesheet" href="css/bootstrap.min.css">
-      <!--animate css-->
-      <link rel="stylesheet" href="css/animate-wow.css">
-      <!--main css-->
-      <link rel="stylesheet" href="css/style.css">
-      <link rel="stylesheet" href="css/bootstrap-select.min.css">
-      <link rel="stylesheet" href="css/slick.min.css">
-      <!--responsive css-->
-      <link rel="stylesheet" href="css/responsive.css">
-   </head>
-   <body>
-      <header id="header" class="top-head">
-         <!-- Static navbar -->
-         <nav class="navbar navbar-default">
-            <div class="container-fluid">
-               <div class="row">
-                  <div class="col-md-4 col-sm-12 left-rs">
-                     <div class="navbar-header">
-                        <button type="button" id="top-menu" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"> 
-                        <span class="sr-only">Toggle navigation</span> 
-                        <span class="icon-bar"></span> 
-                        <span class="icon-bar"></span> 
-                        <span class="icon-bar"></span> 
-                        </button>
-                        <a href="{{ route('welcome') }}" class="navbar-brand"><img src="{{ asset('img/logo.png') }}" alt="" /></a>
-                     </div>
-                     
+<!--<![endif]-->
+
+<!-- Head BEGIN -->
+<head>
+  <meta charset="utf-8">
+  <title>ဆုလဘ်စံ - အွန်လိုင်းထီဆိုင်</title>
+
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <meta content="Metronic Shop UI description" name="description">
+  <meta content="Metronic Shop UI keywords" name="keywords">
+  <meta content="keenthemes" name="author">
+
+  <meta property="og:site_name" content="-CUSTOMER VALUE-">
+  <meta property="og:title" content="-CUSTOMER VALUE-">
+  <meta property="og:description" content="-CUSTOMER VALUE-">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="-CUSTOMER VALUE-"><!-- link to image for socio -->
+  <meta property="og:url" content="-CUSTOMER VALUE-">
+
+  <link rel="shortcut icon" href="favicon.ico">
+
+  <!-- Fonts START -->
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|PT+Sans+Narrow|Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css"><!--- fonts for slider on the index page -->  
+  <!-- Fonts END -->
+
+  <!-- Global styles START -->          
+  <link href="{{ asset('plugins/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
+  <link href="{{ asset('plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+  <!-- Global styles END --> 
+   
+  <!-- Page level plugin styles START -->
+  <link href="{{ asset('pages/css/animate.css')}}" rel="stylesheet">
+  <link href="{{ asset('plugins/fancybox/source/jquery.fancybox.css')}}" rel="stylesheet">
+  <link href="{{ asset('plugins/owl.carousel/assets/owl.carousel.css')}}" rel="stylesheet">
+  <!-- Page level plugin styles END -->
+
+  <!-- Theme styles START -->
+  <link href="{{ asset('pages/css/components.css')}}" rel="stylesheet">
+  <link href="{{ asset('pages/css/slider.css')}}" rel="stylesheet">
+  <link href="{{ asset('pages/css/style-shop.css')}}" rel="stylesheet" type="text/css">
+  <link href="{{ asset('corporate/css/style.css')}}" rel="stylesheet">
+  <link href="{{ asset('corporate/css/style-responsive.css')}}" rel="stylesheet">
+  <link href="{{ asset('corporate/css/themes/red.css')}}" rel="stylesheet" id="style-color">
+  <link href="{{ asset('corporate/css/custom.css')}}" rel="stylesheet">
+  <!-- Theme styles END -->
+</head>
+<!-- Head END -->
+
+<!-- Body BEGIN -->
+<body class="ecommerce">
+    <!-- BEGIN HEADER -->
+    <div class="header">
+      <div class="container">
+        <a class="site-logo" href="{{ route('welcome') }}"><img src="{{ asset('corporate/img/logos/logo-shop-red.png')}}" alt="Metronic Shop UI"></a>
+        <a href="" class="mobi-toggler"><i class="fa fa-bars"></i></a>
+        <!-- BEGIN CART -->
+        <div class="top-cart-block">
+          <div class="top-cart-info">
+          <a href="" class="top-cart-info-count">Language</a>
+          @role('Admin')
+          <a href="" class="top-cart-info-value">Admin Panel</a>
+          @endrole
+
+          @role('User')
+            <a href="{{route('users.account')}}" class="top-cart-info-value">My Account</a>
+            <a href="{{route('users.balance')}}" class="top-cart-info-value">My Balance</a>
+           
+          @endrole
+          @guest
+            <a href="{{ route('login') }}" class="top-cart-info-value">{{ __('Login') }}</a>
+            @if (Route::has('register'))
+            <a href="{{ route('register') }}" class="top-cart-info-value">{{ __('Register') }}</a>
+            @endif
+          @else
+            <a class="top-cart-info-value" href="{{ route('logout') }}" onclick="event.preventDefault(); 
+              document.getElementById('logout-form').submit();"> {{ __('Logout') }}</a>
+
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              @csrf
+              </form>
+          @endguest
+          </div>
+        </div>
+        <!--END CART -->
+        <!-- BEGIN NAVIGATION -->
+        <div class="header-navigation">
+          <ul>
+            <li><a href="#" target="_blank">Check Lottery</a></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
+                Shop 
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="{{route('tickets.searchView')}}">Search</a></li>
+                <li><a href="shop-index-header-fix.html">Advanced Search</a></li>
+              </ul>
+            </li>
+            <li><a href="#" target="_blank">BayDin</a></li>
+            <li><a href="#" target="_blank">NEWS</a></li>
+            <li><a href="#" target="_blank">Apply Partner</a></li>
+            <!-- BEGIN TOP SEARCH -->
+            <li class="menu-search">
+              <span class="sep"></span>
+              <i class="fa fa-search search-btn"></i>
+              <div class="search-box">
+                <form action="#">
+                  <div class="input-group">
+                    <input type="text" placeholder="Search" class="form-control">
+                    <span class="input-group-btn">
+                      <button class="btn btn-primary" type="submit">Search</button>
+                    </span>
                   </div>
-                  <div class="col-md-8 col-sm-12">
-                     <div class="right-nav">
-                        <div class="help-r hidden-xs">
-                           <div class="help-box">
-                              <ul>
-                                 <li> <a data-toggle="modal" data-target="#myModal" href="#"> <span>ဘာသာစကားပြောင်းရန်</span> <img src="img/flag.png" alt="" /> </a> </li>
-                                 <li> <a href="#"><img class="h-i" src="img/help-icon.png" alt="" /> အကူအညီ </a> </li>
-                                 @guest
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('ဝင်ရန်') }}</a>
-                                </li>
-                                @if (Route::has('register'))
-                                    <li>
-                                        <a class="custom-b" href="{{ route('register') }}">{{ __('စာရင်းသွင်းရန်') }}</a>
-                                    </li>
-                                @endif
-                                @else
-                                
-                                 <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                          Manage
-                                    </a>
-
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                       <ul>
-                                          <li>
-                                             <a class="nav-link" href="{{ route('users.index') }}">Manage Users</a>
-                                          </li>
-                                          <li>
-                                             <a class="nav-link" href="{{ route('roles.index') }}">Manage Role</a>
-                                          </li>
-                                          <li>
-                                             <a class="nav-link" href="{{ route('products.index') }}">Manage Product</a>
-                                          </li>
-                                          <li>
-                                             <a class="nav-link" href="{{ route('tickets.index') }}">Manage Tickets</a>
-                                          </li>
-                                          <li>
-                                             <a class="nav-link" href="{{ route('times.index') }}">Manage Times</a>
-                                          </li>
-                                       </ul>
-                                    </div>
-                                 </li>
-                                 <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                          {{ Auth::user()->name }}
-                                    </a>
-
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                       <ul>
-                                          <li>
-                                          <!-- <a class="dropdown-item" href="{{ route('profile') }}">{{ __('မ') }}</a> -->
-                                          </li>
-                                          <li>
-                                          <a class="dropdown-item" href="{{ route('logout') }}"
-                                             onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
-                                             {{ __('Logout') }}
-                                          </a>
-
-                                          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                             @csrf
-                                          </form>
-                                       </li>
-                                    </div>
-                                 </li>
-                            @endguest
-                              </ul>
-                           </div>
-                        </div>
-                        <div class="nav-b hidden-xs">
-                           <div class="nav-box">
-                              <ul>
-                              <li><a href="{{ route('welcome') }}">လက်မှတ်ဝယ်ရန်</a></li>
-                                <li><a href="#">ထီပေါက်စဥ်</a></li>
-                                 <li><a href="#">ပါတနာလျောက်ထားရန်</a></li>
-                              </ul>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <!--/.container-fluid --> 
-         </nav>
-      </header>
-      <!-- Modal -->
-      <div class="modal fade lug" id="myModal" role="dialog">
-         <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-               <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">ဘာသာစကားပြောင်းရန်</h4>
-               </div>
-               <div class="modal-body">
-                  <ul>
-                     <li><a href="#"><img src="{{ asset('img/flag-up-2.png') }}" alt="" /> မြန်မာ </a></li>
-                     <li><a href="#"><img src="{{ asset('img/flag-up-1.png') }}" alt="" /> English</a></li>
-                  </ul>
-               </div>
-            </div>
-         </div>
+                </form>
+              </div> 
+            </li>
+            <!-- END TOP SEARCH -->
+          </ul>
+        </div>
+        <!-- END NAVIGATION -->
       </div>
-      <div id="sidebar" class="top-nav">
-         <ul id="sidebar-nav" class="sidebar-nav">
-            @guest
-            @else
-            <li><a href="{{ route('home') }}">ပင်မ</a></li>
-            @endguest
-            <li><a href="{{ route('welcome') }}">လက်မှတ်ဝယ်ရန်</a></li>
-            <li><a href="#">ထီပေါက်စဥ်</a></li>
-            <li><a href="#">ပါတနာလျောက်ထားရန်</a></li>
-     
-            <li><a href="#">အကူအညီ</a></li>
-            @guest
-               <li><a class="nav-link" href="{{ route('login') }}">{{ __('ဝင်ရန်') }}</a></li>
-               @if (Route::has('register'))
-               <li><a class="custom-b" href="{{ route('register') }}">{{ __('စာရင်းသွင်းရန်') }}</a></li>
-               @endif
-            @else
-               <li><a href="{{route('tickets.mytickets')}}">မိမိလက်မှတ်များ</a></li>
-               <li>
-                  <a class="dropdown-item" href="{{ route('logout') }}"
-                     onclick="event.preventDefault();
-                                 document.getElementById('logout-form').submit();">
-                     ထွက်ရန်
-                  </a>
+    </div>
+    <!-- Header END -->
+    @yield('content')
+    
+    <!-- BEGIN BRANDS -->
+    <div class="brands">
+      <div class="container">
+            <div class="owl-carousel owl-carousel6-brands">
+              <a href="shop-product-list.html"><img src="{{ asset('pages/img/brands/canon.jpg')}}" alt="canon" title="canon"></a>
+              <a href="shop-product-list.html"><img src="{{ asset('pages/img/brands/esprit.jpg')}}" alt="esprit" title="esprit"></a>
+              <a href="shop-product-list.html"><img src="{{ asset('pages/img/brands/gap.jpg')}}" alt="gap" title="gap"></a>
+              <a href="shop-product-list.html"><img src="{{ asset('pages/img/brands/next.jpg')}}" alt="next" title="next"></a>
+              <a href="shop-product-list.html"><img src="{{ asset('pages/img/brands/puma.jpg')}}" alt="puma" title="puma"></a>
+              <a href="shop-product-list.html"><img src="{{ asset('pages/img/brands/zara.jpg')}}" alt="zara" title="zara"></a>
+              <a href="shop-product-list.html"><img src="{{ asset('pages/img/brands/canon.jpg')}}" alt="canon" title="canon"></a>
+              <a href="shop-product-list.html"><img src="{{ asset('pages/img/brands/esprit.jpg')}}" alt="esprit" title="esprit"></a>
+              <a href="shop-product-list.html"><img src="{{ asset('pages/img/brands/gap.jpg')}}" alt="gap" title="gap"></a>
+              <a href="shop-product-list.html"><img src="{{ asset('pages/img/brands/next.jpg')}}" alt="next" title="next"></a>
+              <a href="shop-product-list.html"><img src="{{ asset('pages/img/brands/puma.jpg')}}" alt="puma" title="puma"></a>
+              <a href="shop-product-list.html"><img src="{{ asset('pages/img/brands/zara.jpg')}}" alt="zara" title="zara"></a>
+            </div>
+        </div>
+    </div>
+    <!-- END BRANDS -->
 
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                     @csrf
-                  </form>
-               </li>
-              
-            @endguest
-         </ul>
+    
+
+    <!-- BEGIN PRE-FOOTER -->
+    <div class="pre-footer">
+      <div class="container">
+        <div class="row">
+          <!-- BEGIN BOTTOM ABOUT BLOCK -->
+          <div class="col-md-4 col-sm-6 pre-footer-col">
+            <h2>About us</h2>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam sit nonummy nibh euismod tincidunt ut laoreet dolore magna aliquarm erat sit volutpat. Nostrud exerci tation ullamcorper suscipit lobortis nisl aliquip  commodo consequat. </p>
+            <p>Duis autem vel eum iriure dolor vulputate velit esse molestie at dolore.</p>
+          </div>
+          <!-- END BOTTOM ABOUT BLOCK -->
+          <!-- BEGIN BOTTOM INFO BLOCK -->
+          <div class="col-md-4 col-sm-6 pre-footer-col">
+            <h2>Information</h2>
+            <ul class="list-unstyled">
+              <li><i class="fa fa-angle-right"></i> <a href="javascript:;">Wal Mal</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="">Terms & Conditions</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="">FAQ</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="javascript:;">BayDin</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="javascript:;">News</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="javascript:;">Be Partner</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="contacts.html">Contact Us</a></li>
+            </ul>
+          </div>
+          <!-- END INFO BLOCK -->
+
+          <!-- BEGIN BOTTOM CONTACTS -->
+          <div class="col-md-4 col-sm-6 pre-footer-col">
+            <h2>Our Contacts</h2>
+            <address class="margin-bottom-40">
+              35, Lorem Lis Street, Park Ave<br>
+              Shwe Pyi Thar, Yangon<br>
+              Phone: 300 323 3456<br>
+              Fax: 300 323 1456<br>
+              Email: <a href="mailto:suluckthar@6bictsolutions.com">suluckthar@6bictsolutions.com</a><br>
+              Skype: <a href="skype:metronic">metronic</a>
+            </address>
+          </div>
+          <!-- END BOTTOM CONTACTS -->
+        </div>
+        <hr>
+        <div class="row">
+          <!-- BEGIN SOCIAL ICONS -->
+          <div class="col-md-6 col-sm-6">
+            <ul class="social-icons">
+              <li><a class="facebook" data-original-title="facebook" href="javascript:;"></a></li>
+              <li><a class="twitter" data-original-title="twitter" href="javascript:;"></a></li>
+              <li><a class="googleplus" data-original-title="googleplus" href="javascript:;"></a></li>
+            </ul>
+          </div>
+          <!-- END SOCIAL ICONS -->
+          <!-- BEGIN NEWLETTER -->
+          <div class="col-md-6 col-sm-6">
+            <div class="pre-footer-subscribe-box pull-right">
+              <h2>Newsletter</h2>
+              <form action="#">
+                <div class="input-group">
+                  <input type="text" placeholder="youremail@mail.com" class="form-control">
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">Subscribe</button>
+                  </span>
+                </div>
+              </form>
+            </div> 
+          </div>
+          <!-- END NEWLETTER -->
+        </div>
       </div>
-            @yield('content')
-            
-            <footer>
-         <div class="main-footer">
-            <div class="container">
-               <div class="row">
-               </div>
-              
-            </div>
-         </div>
-         <div class="copyright">
-            <div class="container">
-               <div class="row">
-                  <div class="col-md-8">
-                     <p><img width="90" src="{{ asset('img/logo.png') }}" alt="#" style="margin-top: -5px;" /> All Rights Reserved. Company Name © ၂၀၂၀</p>
-                  </div>
-                  <div class="col-md-4">
-                     <ul class="list-inline socials">
-                        <li>
-                           <a href="">
-                           <i class="fa fa-facebook" aria-hidden="true"></i>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="">
-                           <i class="fa fa-twitter" aria-hidden="true"></i>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="">
-                           <i class="fa fa-instagram" aria-hidden="true"></i>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#">
-                           <i class="fa fa-linkedin" aria-hidden="true"></i>
-                           </a>
-                        </li>
-                     </ul>
-                     <ul class="right-flag">
-                     <!-- <li><a href="#">စည်းကမ်းချက်များ</a></li> -->
-                     <li> <a data-toggle="modal" data-target="#myModal" href="#"> <span>ဘာသာစကားပြောင်းရန်</span> <img src="img/flag.png" alt="" /> </a> </li>
-                     </ul>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </footer>
+    </div>
+    <!-- END PRE-FOOTER -->
 
-      <!--main js--> 
-      <script src="js/jquery-1.12.4.min.js"></script> 
-      <!--bootstrap js--> 
-      <script src="js/bootstrap.min.js"></script> 
-      <script src="js/bootstrap-select.min.js"></script>
-      <script src="js/slick.min.js"></script> 
-      <script src="js/wow.min.js"></script>
-      <!--custom js--> 
-      <script src="js/custom.js"></script>
-   </body>
+    <!-- BEGIN FOOTER -->
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+          <!-- BEGIN COPYRIGHT -->
+          <div class="col-md-4 col-sm-4 padding-top-10">
+            2020 © 6b ICT Solutions. ALL Rights Reserved. 
+          </div>
+          <!-- END COPYRIGHT -->
+          <!-- BEGIN PAYMENTS -->
+          <div class="col-md-4 col-sm-4">
+            <ul class="list-unstyled list-inline pull-right">
+              <li><img src="{{ asset('corporate/img/payments/western-union.jpg')}}" alt="We accept Western Union" title="We accept Western Union"></li>
+              <li><img src="{{ asset('corporate/img/payments/american-express.jpg')}}" alt="We accept American Express" title="We accept American Express"></li>
+              <li><img src="{{ asset('corporate/img/payments/MasterCard.jpg')}}" alt="We accept MasterCard" title="We accept MasterCard"></li>
+              <li><img src="{{ asset('corporate/img/payments/PayPal.jpg')}}" alt="We accept PayPal" title="We accept PayPal"></li>
+              <li><img src="{{ asset('corporate/img/payments/visa.jpg')}}" alt="We accept Visa" title="We accept Visa"></li>
+            </ul>
+          </div>
+          <!-- END PAYMENTS -->
+          <!-- BEGIN POWERED -->
+          <div class="col-md-4 col-sm-4 text-right">
+            <p class="powered">Powered by: <a href="http://www.6bictsolutions.com/">6b ICT Solutions</a></p>
+          </div>
+          <!-- END POWERED -->
+        </div>
+      </div>
+    </div>
+    <!-- END FOOTER -->
+
+    <!-- Load javascripts at bottom, this will reduce page load time -->
+    <!-- BEGIN CORE PLUGINS (REQUIRED FOR ALL PAGES) -->
+    <!--[if lt IE 9]>
+    <script src="{{ asset('plugins/respond.min.js')}}"></script>  
+    <![endif]-->
+    <script src="{{ asset('plugins/jquery.min.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('plugins/jquery-migrate.min.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js')}}" type="text/javascript"></script>      
+    <script src="{{ asset('corporate/scripts/back-to-top.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('plugins/jquery-slimscroll/jquery.slimscroll.min.js')}}" type="text/javascript"></script>
+    <!-- END CORE PLUGINS -->
+
+    <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+    <script src="{{ asset('plugins/fancybox/source/jquery.fancybox.pack.js')}}" type="text/javascript"></script><!-- pop up -->
+    <script src="{{ asset('plugins/owl.carousel/owl.carousel.min.js')}}" type="text/javascript"></script><!-- slider for products -->
+    <script src="{{ asset('plugins/zoom/jquery.zoom.min.js')}}" type="text/javascript"></script><!-- product zoom -->
+    <script src="{{ asset('plugins/bootstrap-touchspin/bootstrap.touchspin.js')}}" type="text/javascript"></script><!-- Quantity -->
+
+    <script src="{{ asset('corporate/scripts/layout.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('pages/scripts/bs-carousel.js')}}" type="text/javascript"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            Layout.init();    
+            Layout.initOWL();
+            Layout.initImageZoom();
+            Layout.initTouchspin();
+            Layout.initTwitter();
+        });
+    </script>
+    <!-- END PAGE LEVEL JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
 </html>

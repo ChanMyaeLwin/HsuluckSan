@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Hash;
 use App\User;
+use App\Tickets;
 
 class HomeController extends Controller
 {
@@ -26,7 +27,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $tickets = Tickets::orderBy('status','DESC')->paginate(30);
+        $ticket_no = null;
+        return view('home',compact('tickets','ticket_no'));
     }
 
     public function profile()

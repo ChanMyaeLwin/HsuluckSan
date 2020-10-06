@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\UserManagement;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 //custom Spatie\Permission
@@ -86,5 +87,17 @@ class UserController extends Controller
     {
         User::find($id)->delete();
         return redirect()->route('users.index')->with('success','User deleted successfully');
+    }
+
+    public function userbalance()
+    {
+        $balance = Auth::user()->balance;
+        return view('users.balance',compact('balance'));
+    }
+
+    public function useraccount()
+    {
+        $user = Auth::user();
+        return view('users.account',compact('user'));
     }
 }

@@ -109,6 +109,13 @@ class TicketController extends Controller
         return redirect()->route('tickets.index')->with('success','tickets deleted successfully');
     }
 
+    public function showSearchView()
+    {
+        $tickets = Tickets::orderBy('status','DESC')->paginate(30);
+        $ticket_no = null;
+        return view('tickets.searchView',compact('tickets','ticket_no'));
+    }
+
     public function search(Request $request)
     {
         $tickets = null;
@@ -117,7 +124,7 @@ class TicketController extends Controller
         $tickets = Tickets::where('name','Like','%'.$ticket_no.'%')
                 ->orderby('status')->paginate(20);
             }
-        return view('result',compact('tickets','ticket_no'));
+        return view('tickets.searchView',compact('tickets','ticket_no'));
     }
 
     public function buytickets($id)
