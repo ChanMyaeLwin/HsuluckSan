@@ -18,7 +18,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 <!-- Head BEGIN -->
 <head>
   <meta charset="utf-8">
-  <title>ဆုလဘ်စံ - အွန်လိုင်းထီဆိုင်</title>
+  <title>ဆုလာဘ်စံ - အွန်လိုင်းထီဆိုင်</title>
 
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -113,9 +113,9 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                 <li><a href="shop-index-header-fix.html">Advanced Search</a></li>
               </ul>
             </li>
-            <li><a href="#" target="_blank">BayDin</a></li>
+            <li><a href="#" target="_blank">Astrology</a></li>
             <li><a href="#" target="_blank">NEWS</a></li>
-            <li><a href="#" target="_blank">Apply Partner</a></li>
+            <li><a href="#" target="_blank">Apply Partnership</a></li>
             <!-- BEGIN TOP SEARCH -->
             <li class="menu-search">
               <span class="sep"></span>
@@ -144,18 +144,13 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
     <div class="brands">
       <div class="container">
             <div class="owl-carousel owl-carousel6-brands">
-              <a href="shop-product-list.html"><img src="{{ asset('pages/img/brands/canon.jpg')}}" alt="canon" title="canon"></a>
-              <a href="shop-product-list.html"><img src="{{ asset('pages/img/brands/esprit.jpg')}}" alt="esprit" title="esprit"></a>
-              <a href="shop-product-list.html"><img src="{{ asset('pages/img/brands/gap.jpg')}}" alt="gap" title="gap"></a>
-              <a href="shop-product-list.html"><img src="{{ asset('pages/img/brands/next.jpg')}}" alt="next" title="next"></a>
-              <a href="shop-product-list.html"><img src="{{ asset('pages/img/brands/puma.jpg')}}" alt="puma" title="puma"></a>
-              <a href="shop-product-list.html"><img src="{{ asset('pages/img/brands/zara.jpg')}}" alt="zara" title="zara"></a>
-              <a href="shop-product-list.html"><img src="{{ asset('pages/img/brands/canon.jpg')}}" alt="canon" title="canon"></a>
-              <a href="shop-product-list.html"><img src="{{ asset('pages/img/brands/esprit.jpg')}}" alt="esprit" title="esprit"></a>
-              <a href="shop-product-list.html"><img src="{{ asset('pages/img/brands/gap.jpg')}}" alt="gap" title="gap"></a>
-              <a href="shop-product-list.html"><img src="{{ asset('pages/img/brands/next.jpg')}}" alt="next" title="next"></a>
-              <a href="shop-product-list.html"><img src="{{ asset('pages/img/brands/puma.jpg')}}" alt="puma" title="puma"></a>
-              <a href="shop-product-list.html"><img src="{{ asset('pages/img/brands/zara.jpg')}}" alt="zara" title="zara"></a>
+              <a href="shop-product-list.html"><img src="{{ asset('pages/img/logo.png')}}" alt="p-logo" title="p-logo"></a>
+              <a href="shop-product-list.html"><img src="{{ asset('pages/img/logo.png')}}" alt="p-logo" title="p-logo"></a>
+              <a href="shop-product-list.html"><img src="{{ asset('pages/img/logo.png')}}" alt="p-logo" title="p-logo"></a>
+              <a href="shop-product-list.html"><img src="{{ asset('pages/img/logo.png')}}" alt="p-logo" title="p-logo"></a>
+              <a href="shop-product-list.html"><img src="{{ asset('pages/img/logo.png')}}" alt="p-logo" title="p-logo"></a>
+              <a href="shop-product-list.html"><img src="{{ asset('pages/img/logo.png')}}" alt="p-logo" title="p-logo"></a>
+              
             </div>
         </div>
     </div>
@@ -178,12 +173,12 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
           <div class="col-md-4 col-sm-6 pre-footer-col">
             <h2>Information</h2>
             <ul class="list-unstyled">
-              <li><i class="fa fa-angle-right"></i> <a href="javascript:;">Wal Mal</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="{{route('tickets.searchView')}}">Shop</a></li>
               <li><i class="fa fa-angle-right"></i> <a href="">Terms & Conditions</a></li>
               <li><i class="fa fa-angle-right"></i> <a href="">FAQ</a></li>
               <li><i class="fa fa-angle-right"></i> <a href="javascript:;">BayDin</a></li>
               <li><i class="fa fa-angle-right"></i> <a href="javascript:;">News</a></li>
-              <li><i class="fa fa-angle-right"></i> <a href="javascript:;">Be Partner</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="javascript:;">Apply Partnership</a></li>
               <li><i class="fa fa-angle-right"></i> <a href="contacts.html">Contact Us</a></li>
             </ul>
           </div>

@@ -20,10 +20,10 @@
                     <div class="container">
                         <div class="carousel-position-four text-center">
                             <h2 class="margin-bottom-20 animate-delay carousel-title-v3 border-bottom-title text-uppercase" data-animation="animated fadeInDown">
-                                Luck  <br/><span class="color-red-v2">Shop UI Features</span><br/> designed
+                                Try  <br/><span class="color-red-v2">Lottery</span><br/> Today
                             </h2>
-                            <p class="carousel-subtitle-v2" data-animation="animated fadeInUp">Lorem ipsum dolor sit amet constectetuer diam <br/>
-                            adipiscing elit euismod ut laoreet dolore.</p>
+                            <p class="carousel-subtitle-v2" data-animation="animated fadeInUp">We cannot foresee our luck coming to us <br/>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -33,47 +33,31 @@
                     <div class="container">
                         <div class="carousel-position-four text-center">
                             <h2 class="animate-delay carousel-title-v4" data-animation="animated fadeInDown">
-                                Unlimted
+                               EVEN ONE TICKET
                             </h2>
                             <p class="carousel-subtitle-v2" data-animation="animated fadeInDown">
-                                Layout Options
+                                CAN CHANGE
                             </p>
                             <p class="carousel-subtitle-v3 margin-bottom-30" data-animation="animated fadeInUp">
-                                Fully Responsive
+                               YOUR LIFE
                             </p>
-                            <a class="carousel-btn" href="#" data-animation="animated fadeInUp">See More Details</a>
+                            <a class="carousel-btn" href="{{route('tickets.searchView')}}" data-animation="animated fadeInUp">Search Lottery</a>
                         </div>
-                        <img class="carousel-position-five animate-delay hidden-sm hidden-xs" src="{{ asset('pages/img/shop-slider/slide2/price.png')}}" alt="Price" data-animation="animated zoomIn">
+                        <!-- <img class="carousel-position-five animate-delay hidden-sm hidden-xs" src="{{ asset('pages/img/shop-slider/slide2/price.png')}}" alt="Price" data-animation="animated zoomIn"> -->
                     </div>
                 </div>
 
+        
                 <!-- Third slide -->
-                <div class="item carousel-item-six">
-                    <div class="container">
-                        <div class="carousel-position-four text-center">
-                            <span class="carousel-subtitle-v3 margin-bottom-15" data-animation="animated fadeInDown">
-                                Full Admin &amp; Frontend
-                            </span>
-                            <p class="carousel-subtitle-v4" data-animation="animated fadeInDown">
-                                eCommerce UI
-                            </p>
-                            <p class="carousel-subtitle-v3" data-animation="animated fadeInDown">
-                                Is Ready For Your Project
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Fourth slide -->
                 <div class="item carousel-item-seven">
                    <div class="center-block">
                         <div class="center-block-wrap">
                             <div class="center-block-body">
                                 <h2 class="carousel-title-v1 margin-bottom-20" data-animation="animated fadeInDown">
-                                    The most <br/>
-                                    wanted bijouterie
+                                SHAPE YOUR DREAM<br/>
+                                  WITH SU LUCK SAN
                                 </h2>
-                                <a class="carousel-btn" href="#" data-animation="animated fadeInUp">But It Now!</a>
+                                <a class="carousel-btn" href="{{route('tickets.searchView')}}" data-animation="animated fadeInUp">Shop Now!</a>
                             </div>
                         </div>
                     </div>
