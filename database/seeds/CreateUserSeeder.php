@@ -18,7 +18,8 @@ class CreateUserSeeder extends Seeder
         'name' => 'Chan Myae Lwin',
         'email' => 'admin@hsulucksan.com',
         'phone' => '09787676632',
-        'password' => bcrypt('123456789')
+        'password' => bcrypt('123456789'),
+        'balance' => '100000'
         ]);
         
         $role = Role::create(['name' => 'Admin']);

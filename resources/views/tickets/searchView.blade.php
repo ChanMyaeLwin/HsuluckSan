@@ -12,9 +12,9 @@
                 <li class="active">Latest News</li>
             </ul>
             <ul class="list-group margin-bottom-25 sidebar-menu">
-              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Latest News 1</a></li>
-              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Latest News 2</a></li>
-              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Latest News 3</a></li>
+            <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i> Latest News 1</a></li>
+              <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i> Latest News 2</a></li>
+              <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i> Latest News 3</a></li>
             </ul>
           </div>
           <!-- END SIDEBAR -->
@@ -48,10 +48,11 @@
                   <!-- <div class="pi-img-wrapper">
                     <img src="assets/pages/img/products/model1.jpg" class="img-responsive" alt="Berry Lace Dress">
                   </div> -->
-                  <h3><a href="shop-item.html">{{ $ticket->name }}</a></h3>
+                  <h3>{{ $ticket->name }}</h3>
                   @if($ticket->status == 1)
                      <div class="pi-price pi-available">Available</div>
-                     <a href="javascript:;" class="btn btn-default add2cart" data-toggle="modal" name="confirm" data-target="#comfirmModel">Buy Now</a>
+                     <button class="btn btn-default add2cart" onclick="buyticket('{{$ticket->id}}')">BUY NOW</button>
+                     
                   @else
                      <div class="pi-price pi-unavailable">Unavailable</div>
                   @endif
@@ -72,41 +73,44 @@
         <!-- END SIDEBAR & CONTENT -->
       </div>
     </div>
-    <!-- START Modal -->
-    <div class="modal fade" id="comfirmModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Are you sure to buy?</h5>
-          </div>
-          <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" id="confirm">Confirm</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  <script>
-     $('button[name="confirm"]').on('click', function(e) {
-      var $form = $(this).closest('form');
-      e.preventDefault();
-      $('#confirm').modal({
-          backdrop: 'static',
-          keyboard: false
-      })
-      .on('click', '#delete', function(e) {
-          $form.trigger('submit');
-        });
-      $("#cancel").on('click',function(e){
-       e.preventDefault();
-       $('#confirm').modal.model('hide');
-      });
-    });
-  </script>
 
-    <!-- END Modal -->
+    <script type="text/javascript" language="javascript" class="init">
+      function buyticket(value) {
+        const id = value;
+        swal({
+            title: "Confirmation!",
+            text: "Are you sure to buy",
+            textColor: "red",
+            buttons: [true, "Buy!"],
+            icon: "warning",
+        }).then((value) => {
+            if (value) {
+                $.ajax({
+                    method: "get",
+                    url: `/buyticket/${id}`
+                }).done(function (response) {
+                  console.log(response);
+                    if (response['response_code'] == "200") {
+                      const ticket_name = response['ticket_name'];
+                      swal({
+                        title: `You Buyed ${ticket_name}`,
+                      });
+                      window.location.href = `/searchView`;
+                    }else if (response['response_code'] == "400")  {
+                      
+                      swal({
+                        title: "This Ticket is owned by other right now",
+                      });
+                    } else {
+                      swal({
+                        title: "Something Error",
+                      });
+                    };
+                })
+              }
+            })
+      }
+    </script>
+
 
 @endsection

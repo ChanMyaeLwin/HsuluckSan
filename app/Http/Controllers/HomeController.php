@@ -27,7 +27,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $tickets = Tickets::orderBy('status','DESC')->paginate(30);
+        $tickets = Tickets::orderBy('status','ASC')->paginate(30);
         $ticket_no = null;
         return view('home',compact('tickets','ticket_no'));
     }

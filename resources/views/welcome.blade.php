@@ -18,11 +18,13 @@
                 <!-- First slide -->
                 <div class="item carousel-item-four active">
                     <div class="container">
+
                         <div class="carousel-position-four text-center">
                             <h2 class="margin-bottom-20 animate-delay carousel-title-v3 border-bottom-title text-uppercase" data-animation="animated fadeInDown">
                                 Try  <br/><span class="color-red-v2">Lottery</span><br/> Today
                             </h2>
-                            <p class="carousel-subtitle-v2" data-animation="animated fadeInUp">We cannot foresee our luck coming to us <br/>
+                            <p class="carousel-subtitle-v2" data-animation="animated fadeInUp">We cannot foresee our luck coming to us <br/> <br/>
+                            <a class="carousel-btn" href="{{route('tickets.searchView')}}" data-animation="animated fadeInUp">Shop Now!</a>
                             </p>
                         </div>
                     </div>
@@ -32,15 +34,33 @@
                 <div class="item carousel-item-five">
                     <div class="container">
                         <div class="carousel-position-four text-center">
-                            <h2 class="animate-delay carousel-title-v4" data-animation="animated fadeInDown">
-                               EVEN ONE TICKET
+                            <h2 class="margin-bottom-20 animate-delay carousel-title-v3 border-bottom-title text-uppercase" data-animation="animated fadeInDown">
+                            <span class="color-red-v2">  EVEN ONE TICKET </span>
                             </h2>
                             <p class="carousel-subtitle-v2" data-animation="animated fadeInDown">
                                 CAN CHANGE
                             </p>
-                            <p class="carousel-subtitle-v3 margin-bottom-30" data-animation="animated fadeInUp">
-                               YOUR LIFE
+                            <h2 class="margin-bottom-20 animate-delay carousel-title-v3 border-bottom-title text-uppercase" data-animation="animated fadeInDown">
+                            <span class="color-red-v2"> YOUR LIFE </span>
+                            </h2>
+                            <a class="carousel-btn" href="{{route('tickets.searchView')}}" data-animation="animated fadeInUp">Search Lottery</a>
+                        </div>
+                        <!-- <img class="carousel-position-five animate-delay hidden-sm hidden-xs" src="{{ asset('pages/img/shop-slider/slide2/price.png')}}" alt="Price" data-animation="animated zoomIn"> -->
+                    </div>
+                </div>
+
+                <div class="item carousel-item-five">
+                    <div class="container">
+                        <div class="carousel-position-four text-center">
+                            <h2 class="margin-bottom-20 animate-delay carousel-title-v3 border-bottom-title text-uppercase" data-animation="animated fadeInDown">
+                            <span class="color-red-v2">    SU LUCK SAN </span>
+                            </h2>
+                            <p class="carousel-subtitle-v2" data-animation="animated fadeInDown">
+                                WILL SUPPORT TO GET
                             </p>
+                            <h2 class="margin-bottom-20 animate-delay carousel-title-v3 border-bottom-title text-uppercase" data-animation="animated fadeInDown">
+                            <span class="color-red-v2"> YOUR LUCK </span>
+                            </h2>
                             <a class="carousel-btn" href="{{route('tickets.searchView')}}" data-animation="animated fadeInUp">Search Lottery</a>
                         </div>
                         <!-- <img class="carousel-position-five animate-delay hidden-sm hidden-xs" src="{{ asset('pages/img/shop-slider/slide2/price.png')}}" alt="Price" data-animation="animated zoomIn"> -->
@@ -53,9 +73,9 @@
                    <div class="center-block">
                         <div class="center-block-wrap">
                             <div class="center-block-body">
-                                <h2 class="carousel-title-v1 margin-bottom-20" data-animation="animated fadeInDown">
+                              <h2 class="carousel-title-v1 margin-bottom-20" data-animation="animated fadeInDown">
                                 SHAPE YOUR DREAM<br/>
-                                  WITH SU LUCK SAN
+                                <span class="color-red-v2">WITH SU LUCK SAN</span>
                                 </h2>
                                 <a class="carousel-btn" href="{{route('tickets.searchView')}}" data-animation="animated fadeInUp">Shop Now!</a>
                             </div>
@@ -83,13 +103,13 @@
           <!-- BEGIN SIDEBAR -->
           <div class="sidebar col-md-3 col-sm-4">
             <ul class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="{{route('welcome')}}">Home</a></li>
                 <li class="active">Latest News</li>
             </ul>
             <ul class="list-group margin-bottom-25 sidebar-menu">
-              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Latest News 1</a></li>
-              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Latest News 2</a></li>
-              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Latest News 3</a></li>
+              <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i> Latest News 1</a></li>
+              <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i> Latest News 2</a></li>
+              <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i> Latest News 3</a></li>
             </ul>
           </div>
           <!-- END SIDEBAR -->
@@ -101,45 +121,27 @@
                   <h1>Today Lucky Tickets for <em>You</em></h1>
                 </div>
                 <div class="col-md-6">
-                  <a href="" class="btn btn-default add2cart">View All Tickets</a>
+                  <a href="{{route('tickets.searchView')}}" class="btn btn-default add2cart">View All Tickets</a>
                 </div>
               </div>
             </div>
             
             <div class="owl-carousel owl-carousel3">
+            @if($tickets)
+              @foreach ($tickets as $key => $ticket)
               <div>
                 <div class="product-item">
                   <div class="pi-img-wrapper">
                     <img src="{{ asset('pages/img/products/k1.jpg')}}" class="img-responsive" alt="Berry Lace Dress">
                   </div>
-                  <h3>ka/123212</h3>
-                  <div class="pi-price pi-available">Available</div>
-                  <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                  <h3>{{$ticket->name}}</h3>
+                     <div class="pi-price pi-available">Available</div>
+                     <button class="btn btn-default add2cart" onclick="buyticket('{{$ticket->id}}')">BUY NOW</button>
                   <!-- <div class="sticker sticker-new"></div> -->
                 </div>
               </div>
-              <div>
-                <div class="product-item">
-                  <div class="pi-img-wrapper">
-                    <img src="{{ asset('pages/img/products/k2.jpg')}}" class="img-responsive" alt="Berry Lace Dress">
-                  </div>
-                  <h3>ka/123212</h3>
-                  <div class="pi-price pi-unavailable">Unavialbel</div>
-                </div>
-              </div>
-              <div>
-                <div class="product-item">
-                  <div class="pi-img-wrapper">
-                    <img src="{{ asset('pages/img/products/k1.jpg')}}" class="img-responsive" alt="Berry Lace Dress">
-                  </div>
-                  <h3>ka/123212</h3>
-                  <div class="pi-price pi-available">Available</div>
-                  <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-                  <!-- <div class="sticker sticker-new"></div> -->
-                </div>
-              </div>
-              
-              
+              @endforeach
+            @endif
             </div>
           </div>
           <!-- END CONTENT -->
@@ -147,6 +149,44 @@
         <!-- END SIDEBAR & CONTENT -->
       </div>
     </div>
+
+    <script type="text/javascript" language="javascript" class="init">
+      function buyticket(value) {
+        const id = value;
+        swal({
+            title: "Confirmation!",
+            text: "Are you sure to buy",
+            textColor: "red",
+            buttons: [true, "Buy!"],
+            icon: "warning",
+        }).then((value) => {
+            if (value) {
+                $.ajax({
+                    method: "get",
+                    url: `/buyticket/${id}`
+                }).done(function (response) {
+                  console.log(response);
+                    if (response['response_code'] == "200") {
+                      const ticket_name = response['ticket_name'];
+                      swal({
+                        title: `You Buyed ${ticket_name}`,
+                      });
+                      window.location.href = `/`;
+                    }else if (response['response_code'] == "400")  {
+                      
+                      swal({
+                        title: "This Ticket is owned by other right now",
+                      });
+                    } else {
+                      swal({
+                        title: "Something Error",
+                      });
+                    };
+                })
+              }
+            })
+      }
+    </script>
 
       
       

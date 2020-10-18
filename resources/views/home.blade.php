@@ -51,7 +51,7 @@
                   <h3><a href="shop-item.html">{{ $ticket->name }}</a></h3>
                   @if($ticket->status == 1)
                      <div class="pi-price pi-available">Available</div>
-                     <a href="javascript:;" class="btn btn-default add2cart">Buy Now</a>
+                     <button class="btn btn-default add2cart" onclick="buyticket('{{$ticket->id}}')">BUY NOW</button>
                   @else
                      <div class="pi-price pi-unavailable">Unavailable</div>
                   @endif
@@ -72,6 +72,44 @@
         <!-- END SIDEBAR & CONTENT -->
       </div>
     </div>
+
+    <script type="text/javascript" language="javascript" class="init">
+      function buyticket(value) {
+        const id = value;
+        swal({
+            title: "Confirmation!",
+            text: "Are you sure to buy",
+            textColor: "red",
+            buttons: [true, "Buy!"],
+            icon: "warning",
+        }).then((value) => {
+            if (value) {
+                $.ajax({
+                    method: "get",
+                    url: `/buyticket/${id}`
+                }).done(function (response) {
+                  console.log(response);
+                    if (response['response_code'] == "200") {
+                      const ticket_name = response['ticket_name'];
+                      swal({
+                        title: `You Buyed ${ticket_name}`,
+                      });
+                      window.location.href = `/searchView`;
+                    }else if (response['response_code'] == "400")  {
+                      
+                      swal({
+                        title: "This Ticket is owned by other right now",
+                      });
+                    } else {
+                      swal({
+                        title: "Something Error",
+                      });
+                    };
+                })
+              }
+            })
+      }
+    </script>
       
 
 @endsection

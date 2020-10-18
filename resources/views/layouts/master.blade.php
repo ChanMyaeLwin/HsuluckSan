@@ -51,7 +51,11 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
   <link href="{{ asset('plugins/fancybox/source/jquery.fancybox.css')}}" rel="stylesheet">
   <link href="{{ asset('plugins/owl.carousel/assets/owl.carousel.css')}}" rel="stylesheet">
   <!-- Page level plugin styles END -->
-
+  <!-- SweetAlert2 -->
+  @include('sweetalert::alert')
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <!-- SweetAlert 2 END -->
   <!-- Theme styles START -->
   <link href="{{ asset('pages/css/components.css')}}" rel="stylesheet">
   <link href="{{ asset('pages/css/slider.css')}}" rel="stylesheet">
@@ -76,7 +80,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
           <div class="top-cart-info">
           <a href="" class="top-cart-info-count">Language</a>
           @role('Admin')
-          <a href="" class="top-cart-info-value">Admin Panel</a>
+          <a href="{{route('dashboard')}}" class="top-cart-info-value">Admin Panel</a>
           @endrole
 
           @role('User')
@@ -103,7 +107,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
         <!-- BEGIN NAVIGATION -->
         <div class="header-navigation">
           <ul>
-            <li><a href="#" target="_blank">Check Lottery</a></li>
+            <li><a href="#">Check Lottery</a></li>
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
                 Shop 
@@ -115,7 +119,6 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
             </li>
             <li><a href="#" target="_blank">Astrology</a></li>
             <li><a href="#" target="_blank">NEWS</a></li>
-            <li><a href="#" target="_blank">Apply Partnership</a></li>
             <!-- BEGIN TOP SEARCH -->
             <li class="menu-search">
               <span class="sep"></span>
@@ -176,7 +179,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
               <li><i class="fa fa-angle-right"></i> <a href="{{route('tickets.searchView')}}">Shop</a></li>
               <li><i class="fa fa-angle-right"></i> <a href="">Terms & Conditions</a></li>
               <li><i class="fa fa-angle-right"></i> <a href="">FAQ</a></li>
-              <li><i class="fa fa-angle-right"></i> <a href="javascript:;">BayDin</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="javascript:;">Astrology</a></li>
               <li><i class="fa fa-angle-right"></i> <a href="javascript:;">News</a></li>
               <li><i class="fa fa-angle-right"></i> <a href="javascript:;">Apply Partnership</a></li>
               <li><i class="fa fa-angle-right"></i> <a href="contacts.html">Contact Us</a></li>

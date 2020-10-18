@@ -13,5 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         factory(App\Tickets::class, 200)->create();
         // $this->call(CreateUserSeeder::class);
+        // $this->call(PermissionTableSeeder::class);
+
     }
 }

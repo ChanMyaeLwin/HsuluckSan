@@ -111,7 +111,7 @@ class TicketController extends Controller
 
     public function showSearchView()
     {
-        $tickets = Tickets::orderBy('status','DESC')->paginate(30);
+        $tickets = Tickets::orderBy('status','ASC')->paginate(30);
         $ticket_no = null;
         return view('tickets.searchView',compact('tickets','ticket_no'));
     }
@@ -122,27 +122,30 @@ class TicketController extends Controller
         if($request->input("ticket_no")){
         $ticket_no = $request->input("ticket_no");
         $tickets = Tickets::where('name','Like','%'.$ticket_no.'%')
-                ->orderby('status')->paginate(20);
+                ->orderby('status','asc')->paginate(20);
             }
         return view('tickets.searchView',compact('tickets','ticket_no'));
     }
 
-    public function buytickets($id)
-    {
-        $ticket = Tickets::find($id);
-        return view('tickets.buyticket',compact('ticket'));
-    }
-
     public function buyticket($id)
     {
-        $ticketId = Tickets::find($id)->id;
-        $userId = Auth::user()->id;
-        $tickets = UserTickets::create(['user_id' => $userId,
+        $ticket = Tickets::where('status',1)->where('id',$id)->first();
+        if($ticket){
+            $ticketId = $ticket->id;
+            $userId = Auth::user()->id;
+            $tickets = UserTickets::create(['user_id' => $userId,
                     'ticket_id'=> $ticketId]);
-        $ticket = Tickets::find($id);
-        $ticket->status = 2;
-        $ticket->save();
-        return redirect()->route('welcome')->with('success','tickets created successfully');  
+            $ticket = Tickets::find($id);
+            $ticket->status = 2;
+            $ticket->save();
+
+            return response()->json(["response_code" => 200,"ticket_name" => $ticket->name]);
+        }
+        else{
+            return response()->json(["response_code" => 400]);
+        }
+      
+        // return redirect()->route('welcome')->with('success','tickets created successfully');  
     }
 
     public function mytickets(Request $request)

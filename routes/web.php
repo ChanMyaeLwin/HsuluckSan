@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use RealRashid\SweetAlert\Facades\Alert;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/', 'WelcomeController@index')->name('welcome');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
@@ -35,11 +33,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/mybalance', 'UserManagement\UserController@userbalance')->name('users.balance');
     Route::get('/myaccount', 'UserManagement\UserController@useraccount')->name('users.account');
     Route::get('/mytickets', 'ProductManagement\TicketController@mytickets')->name('tickets.mytickets');
-    Route::get('/buytickets/{id}', 'ProductManagement\TicketController@buytickets')->name('tickets.buy');
-    Route::post('/buytickets/{id}', 'ProductManagement\TicketController@buyticket')->name('tickets.buynow');
+    Route::get('/buyticket/{id}', 'ProductManagement\TicketController@buyticket')->name('tickets.buynow');
+
+    Route::get('/dashboard', 'BackendManagement\DashboardController@index')->name('dashboard');
 
 });
 
-Route::middleware('admin')->prefix('admin')->namespace('Backend')->group(function () {
-    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-});
