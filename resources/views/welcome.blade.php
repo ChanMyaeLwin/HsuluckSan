@@ -132,7 +132,7 @@
               <div>
                 <div class="product-item">
                   <div class="pi-img-wrapper">
-                    <img src="{{ asset('pages/img/products/k1.jpg')}}" class="img-responsive" alt="Berry Lace Dress">
+                    <!-- <img src="{{ asset('pages/img/products/k1.jpg')}}" class="img-responsive" alt="Berry Lace Dress"> -->
                   </div>
                   <h3>{{$ticket->name}}</h3>
                      <div class="pi-price pi-available">Available</div>

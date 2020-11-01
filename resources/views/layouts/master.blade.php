@@ -195,8 +195,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
               Shwe Pyi Thar, Yangon<br>
               Phone: 300 323 3456<br>
               Fax: 300 323 1456<br>
-              Email: <a href="mailto:suluckthar@6bictsolutions.com">suluckthar@6bictsolutions.com</a><br>
-              Skype: <a href="skype:metronic">metronic</a>
+              Email: <a href="mailto:suluckthar@6bictsolutions.com">Hsulucksan@6bictsolutions.com</a><br>
             </address>
           </div>
           <!-- END BOTTOM CONTACTS -->
