@@ -23,13 +23,13 @@
           <div class="content-search margin-bottom-20">
               <div class="row">
                 <div class="col-md-6">
-                  <h1>Search result for <em>You lucky Ticket</em></h1>
+                  <h1>Advanced Search for <em>times 21</em></h1>
                 </div>
                 <div class="col-md-6">
                   <form method="GET" action="{{ route('tickets.search') }}">
                   @csrf
                     <div class="input-group">
-                      <input type="text" name="ticket_no" placeholder="Search again" class="form-control" value="{{ $ticket_no}}">
+                      <input type="text" name="ticket_no" placeholder="Search again" class="form-control" value="{{ $ticket_no }}">
                       <span class="input-group-btn">
                         <button class="btn btn-primary" type="submit">Search</button>
                       </span>
@@ -42,41 +42,65 @@
             <!-- BEGIN PRODUCT LIST -->
             <div class="row product-list">
               <!-- PRODUCT ITEM START -->
-              @if($tickets)
-              @foreach ($tickets as $key => $ticket)
-              <div class="col-md-4 col-sm-6 col-xs-12">
+              
+              <div class="col-md-12 col-sm-6 col-xs-12">
                 <div class="product-item">
                   <!-- <div class="pi-img-wrapper">
                     <img src="assets/pages/img/products/model1.jpg" class="img-responsive" alt="Berry Lace Dress">
                   </div> -->
-                  <h3>{{ $ticket->name }}</h3>
-                  @if($ticket->status == 1)
-                     <div class="pi-price pi-available">Available</div>
-                     <button class="btn btn-default add2cart" onclick="buyticket('{{$ticket->id}}')">BUY NOW</button>
-                     
-                  @else
-                     <div class="pi-price pi-unavailable">Unavailable</div>
-                  @endif
+                  <!-- <h3>21</h3> -->
               
                 </div>
               </div>
-              @endforeach
-              @endif
+            
               <!-- PRODUCT ITEM END -->
             </div>
             
             <!-- END PRODUCT LIST -->
-            <!-- BEGIN PAGINATOR -->
-            @if($tickets)
-            <div class="row">{!! $tickets->render() !!}</div>
-            @endif
-            <!-- END PAGINATOR -->
           </div>
           <!-- END CONTENT -->
         </div>
         <!-- END SIDEBAR & CONTENT -->
       </div>
     </div>
+
+    <script type="text/javascript" language="javascript" class="init">
+      function buyticket(value) {
+        const id = value;
+        swal({
+            title: "Confirmation!",
+            text: "Are you sure to buy",
+            textColor: "red",
+            buttons: [true, "Buy!"],
+            icon: "warning",
+        }).then((value) => {
+            if (value) {
+                $.ajax({
+                    method: "get",
+                    url: `/buyticket/${id}`
+                }).done(function (response) {
+                  console.log(response);
+                    if (response['response_code'] == "200") {
+                      const ticket_name = response['ticket_name'];
+                      swal({
+                        title: `You Buyed ${ticket_name}`,
+                      });
+                      window.location.href = `/searchView`;
+                    }else if (response['response_code'] == "400")  {
+                      
+                      swal({
+                        title: "This Ticket is owned by other right now",
+                      });
+                    } else {
+                      swal({
+                        title: "Something Error",
+                      });
+                    };
+                })
+              }
+            })
+      }
+    </script>
 
 
 @endsection

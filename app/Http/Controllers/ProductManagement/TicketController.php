@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Tickets;
 use App\UserTickets;
+use App\User;
+use App\UserBalance;
 use DB;
 
 class TicketController extends Controller
@@ -124,10 +126,18 @@ class TicketController extends Controller
         return view('tickets.checkView',compact('tickets','ticket_no'));
     }
 
+    public function advancedSearchView()
+    {
+        $tickets = null;
+        $ticket_no = null;
+        return view('tickets.advancedSearchView',compact('tickets','ticket_no'));
+    }
+
 
     public function search(Request $request)
     {
         $tickets = null;
+        $ticket_no = null;
         if($request->input("ticket_no")){
         $ticket_no = $request->input("ticket_no");
         $tickets = Tickets::where('name','Like','%'.$ticket_no.'%')
@@ -140,15 +150,36 @@ class TicketController extends Controller
     {
         $ticket = Tickets::where('status',1)->where('id',$id)->first();
         if($ticket){
+            $ticket_name = $ticket->name;
+            $ticket_price = 1000;
             $ticketId = $ticket->id;
             $userId = Auth::user()->id;
-            $tickets = UserTickets::create(['user_id' => $userId,
-                    'ticket_id'=> $ticketId]);
-            $ticket = Tickets::find($id);
-            $ticket->status = 2;
-            $ticket->save();
+            $userbalance = Auth::user()->balance;
+            if($userbalance >= $ticket_price){
+                $tickets = UserTickets::create(['user_id' => $userId,
+                'ticket_id'=> $ticketId]);
+                $ticket = Tickets::find($id);
+                $ticket->status = 2;
+                $ticket->save();
 
-            return response()->json(["response_code" => 200,"ticket_name" => $ticket->name]);
+                $user = User::find($userId);
+                $input['balance'] = $userbalance - $ticket_price;
+                $user->update($input);
+
+                $balance['user_id'] = $user->id;
+                $balance['amount'] = $ticket_price;
+                $balance['operation'] = 'Buy Ticket'.$ticket_name;
+                $balance['operator'] =$user->id;
+
+                $user = UserBalance::create($balance);
+
+
+                return response()->json(["response_code" => 200,"ticket_name" => $ticket->name]);
+            }
+            else{
+                return response()->json(["response_code" => 300]);
+            }
+            
         }
         else{
             return response()->json(["response_code" => 400]);

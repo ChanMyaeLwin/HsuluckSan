@@ -26,9 +26,9 @@
           <!-- left column -->
           <div class="col-md-12">
             <!-- general form elements -->
-            <div class="card card-primary">
+            <div class="card card-success">
               <div class="card-header">
-                <h3 class="card-title">Edit User</h3>
+                <h3 class="card-title">Add User's Balance</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -42,27 +42,24 @@
                 </ul>
                 </div>
                 @endif
-              {!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id]]) !!}
+              {!! Form::model($user, ['method' => 'PATCH','route' => ['users.updatebalance', $user->id]]) !!}
                 <div class="card-body">
                   <div class="form-group">
                     <label for="Name">Name</label>
-                    {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                    {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control','readonly')) !!}
                   </div>
                   <div class="form-group">
                     <label for="Email">Email</label>
-                    {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
+                    {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control','readonly')) !!}
                    </div>
                    <div class="form-group">
-                    <label for="Password">Password</label>
-                    {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
+                    <label for="balance">Current Balance</label>
+                    {!! Form::text('balance',null, array('placeholder' => 'Balance','class' => 'form-control','readonly')) !!}
                    </div>
                    <div class="form-group">
-                    <label for="ConfirmPassword">Confirm Password</label>
-                    {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
-                    </div>
-                   <div class="form-group">
-                    <label for="Roles">Roles</label>
-                    {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple')) !!}
+                    <label for="newbalance">Add Balance</label>
+                    {!! Form::text('newbalance',null, array('placeholder' => '','class' => 'form-control')) !!}
+          
                     </div>
                 </div>
                 <!-- /.card-body -->

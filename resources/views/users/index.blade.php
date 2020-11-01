@@ -43,6 +43,16 @@
                     </div>
               </div>
               <!-- /.card-header -->
+              @if (count($errors) > 0)
+                <div class='alert alert-danger'>
+                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+                </ul>
+                </div>
+                @endif
               <div class="card-body table-responsive p-0">
                 <table class="table table-hover text-nowrap">
                   <thead>
@@ -58,6 +68,9 @@
                         <td>{{ ++$i }}</td>
                         <td>{{ $user->name }}</td>
                         <td>
+                        @can('role-edit')
+                        <a class='btn btn-success' href='{{ route("users.addbalance",$user->id) }}'>Add Balance</a>
+                        @endcan
                         <a class='btn btn-info' href='{{ route("users.show",$user->id) }}'>Show</a>
                         @can('role-edit')
                         <a class='btn btn-primary' href='{{ route("users.edit",$user->id) }}'>Edit</a>

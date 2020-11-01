@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 //custom Spatie\Permission
 use Spatie\Permission\Models\Role;
 use App\User;
+use App\UserBalance;
 use DB;
 use Hash;
 
@@ -83,11 +84,41 @@ class UserController extends Controller
 
         return redirect()->route('users.index')->with('success','User updated successfully');
     }
+
     public function destroy($id)
     {
         User::find($id)->delete();
         return redirect()->route('users.index')->with('success','User deleted successfully');
     }
+
+    public function addbalance($id)
+    {
+        $user = User::find($id);
+        return view('users.addbalance',compact('user'));
+    }
+
+    public function updatebalance(Request $request, $id)
+    {
+        $this->validate($request, [
+            'newbalance' => 'required'
+        ]);
+         
+        $input = $request->all();
+        $input['balance'] = $input['balance'] + $input['newbalance'];
+
+        $user = User::find($id);
+        $user->update($input);
+        
+        $balance['user_id'] = $user->id;
+        $balance['amount'] = $input['newbalance'];
+        $balance['operation'] = 'Add Balance';
+        $balance['operator'] = Auth::user()->id;
+
+        $user = UserBalance::create($balance);
+
+        return redirect()->route('users.index')->with('success','User\'s balance updated successfully');
+    }
+
 
     public function userbalance()
     {

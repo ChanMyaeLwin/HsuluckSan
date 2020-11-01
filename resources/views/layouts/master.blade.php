@@ -114,7 +114,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
               </a>
               <ul class="dropdown-menu">
                 <li><a href="{{route('tickets.searchView')}}">Search</a></li>
-                <li><a href="shop-index-header-fix.html">Advanced Search</a></li>
+                <li><a href="{{route('tickets.advancedSearchView')}}">Advanced Search</a></li>
               </ul>
             </li>
             <li><a href="#" target="_blank">Astrology</a></li>
@@ -289,6 +289,67 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
             Layout.initTouchspin();
             Layout.initTwitter();
         });
+    </script>
+    
+     <script type="text/javascript" language="javascript" class="init">
+      function buyticket(value) {
+        const id = value;
+        swal({
+            title: "Confirmation!",
+            text: "Are you sure to buy",
+            textColor: "red",
+            buttons: [true, "Buy!"],
+            icon: "warning",
+        }).then((value) => {
+            if (value) {
+                $.ajax({
+                    method: "get",
+                    url: `/buyticket/${id}`
+                }).done(function (response) {
+                    if (response['response_code'] == "200") {
+                      const ticket_name = response['ticket_name'];
+                      swal({
+                        title: "Congres!",
+                        text:  `You Buyed ${ticket_name}`,
+                        textColor: "orange",
+                        buttons: [true, "OK"],
+                        icon: "info",
+                      }).then(function(){
+                        window.location.reload(true);
+                      })  
+                      
+                    }else if (response['response_code'] == "300")  {
+                      swal({
+                        title: "Your balance is not enoutht, Top up again",
+                      });
+                    }else if (response['response_code'] == "400")  {
+                      swal({
+                        title: "This Ticket is owned by other right now",
+                      });
+                    } else {
+                      swal({
+                        title: "Something Error",
+                      });
+                    };
+                })
+                .fail(function( jqXHR, status, authorize) {
+                  if (authorize == "Unauthorized") {
+                    swal({
+                        title: "Unauthorized!",
+                        text: "You need to login to process",
+                        textColor: "red",
+                        buttons: [true, "Login"],
+                        icon: "warning",
+                    }).then((value) => {
+                      if (value) {
+                        window.location.href = '/login';
+                      }
+                    })
+                  }
+                });
+              }
+            })
+      }
     </script>
     <!-- END PAGE LEVEL JAVASCRIPTS -->
 </body>

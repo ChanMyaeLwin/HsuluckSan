@@ -150,43 +150,8 @@
       </div>
     </div>
 
-    <script type="text/javascript" language="javascript" class="init">
-      function buyticket(value) {
-        const id = value;
-        swal({
-            title: "Confirmation!",
-            text: "Are you sure to buy",
-            textColor: "red",
-            buttons: [true, "Buy!"],
-            icon: "warning",
-        }).then((value) => {
-            if (value) {
-                $.ajax({
-                    method: "get",
-                    url: `/buyticket/${id}`
-                }).done(function (response) {
-                  console.log(response);
-                    if (response['response_code'] == "200") {
-                      const ticket_name = response['ticket_name'];
-                      swal({
-                        title: `You Buyed ${ticket_name}`,
-                      });
-                      window.location.href = `/`;
-                    }else if (response['response_code'] == "400")  {
-                      
-                      swal({
-                        title: "This Ticket is owned by other right now",
-                      });
-                    } else {
-                      swal({
-                        title: "Something Error",
-                      });
-                    };
-                })
-              }
-            })
-      }
-    </script>
+
+   
 
       
       

@@ -18,6 +18,7 @@ Route::get('/', 'WelcomeController@index')->name('welcome');
 Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 Route::get('/searchView', 'ProductManagement\TicketController@showSearchView')->name('tickets.searchView');
+Route::get('/advancedSearchView', 'ProductManagement\TicketController@advancedSearchView')->name('tickets.advancedSearchView');
 Route::get('/checkView', 'ProductManagement\TicketController@showcheckView')->name('tickets.checkView');
 Route::get('/search', 'ProductManagement\TicketController@search')->name('tickets.search');
 Route::group(['middleware' => ['auth']], function() {
@@ -31,6 +32,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('times','ProductManagement\TimesController');
     Route::resource('incomes','IncomeController');
     Route::resource('balances','BalanceController');
+    Route::get('/addbalance/{id}', 'UserManagement\UserController@addbalance')->name('users.addbalance');
+    Route::patch('/updatebalance/{id}', 'UserManagement\UserController@updatebalance')->name('users.updatebalance');
+    
+    
     Route::get('/mybalance', 'UserManagement\UserController@userbalance')->name('users.balance');
     Route::get('/myaccount', 'UserManagement\UserController@useraccount')->name('users.account');
     Route::get('/mytickets', 'ProductManagement\TicketController@mytickets')->name('tickets.mytickets');
