@@ -107,7 +107,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
         <!-- BEGIN NAVIGATION -->
         <div class="header-navigation">
           <ul>
-            <li><a href="#">Check Lottery</a></li>
+            <li><a href="{{route('tickets.checkView')}}">Check Lottery</a></li>
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
                 Shop 

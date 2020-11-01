@@ -11,6 +11,6 @@ class Tickets extends Model
     * @var array
     */
     protected $fillable = [
-        'name','owner','status'
+        'name','owner','status','times_id'
     ];
 }

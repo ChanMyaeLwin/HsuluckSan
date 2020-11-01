@@ -52,7 +52,8 @@ class TicketController extends Controller
             'name' => 'required|unique:tickets,name',
         ]);
         $tickets = Tickets::create(['name' => $request->input('name'),
-                                    'owner'=> '1',
+                                    'owner'=> Auth::user()->id,
+                                    'times_id' => $request->input('times_id'),
                                     'status'=>'1']);
 
         return redirect()->route('tickets.index')->with('success','tickets created successfully');
@@ -116,6 +117,14 @@ class TicketController extends Controller
         return view('tickets.searchView',compact('tickets','ticket_no'));
     }
 
+    public function showcheckView()
+    {
+        $tickets = null;
+        $ticket_no = null;
+        return view('tickets.checkView',compact('tickets','ticket_no'));
+    }
+
+
     public function search(Request $request)
     {
         $tickets = null;
@@ -150,6 +159,16 @@ class TicketController extends Controller
 
     public function mytickets(Request $request)
     {
+        $userId = Auth::user()->id;
+        $tickets = Tickets::Join('user_ticket','user_ticket.ticket_id','tickets.id')->where('user_ticket.user_id',$userId)
+        ->paginate(5);
+        return view('tickets.mytickets',compact('tickets'))->with('i', ($request->input('page', 1)-1) * 5);
+
+    }
+
+    public function ticketStatus(Request $request)
+    {
+        return 'aa';
         $userId = Auth::user()->id;
         $tickets = Tickets::Join('user_ticket','user_ticket.ticket_id','tickets.id')->where('user_ticket.user_id',$userId)
         ->paginate(5);

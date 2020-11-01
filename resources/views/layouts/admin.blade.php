@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>Admin Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -77,10 +77,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="{{route('users.account')}}" class="d-block">Alexander Pierce</a>
         </div>
       </div>
 
@@ -99,7 +99,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="pages/widgets.html" class="nav-link">
+                <a href="{{ route('tickets.ticketStatus') }}" class="nav-link">
                     <i class="nav-icon fas fa-th"></i>
                     <p>
                         Ticket Status
@@ -108,7 +108,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="pages/widgets.html" class="nav-link">
+                <a href="{{ route('incomereport') }}" class="nav-link">
                     <i class="nav-icon fas fa-th"></i>
                     <p>
                         Income Report
@@ -117,7 +117,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="pages/widgets.html" class="nav-link">
+                <a href="{{ route('balance')}}" class="nav-link">
                     <i class="nav-icon fas fa-th"></i>
                     <p>
                         Balance
@@ -217,6 +217,16 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item">
+              <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault(); 
+              document.getElementById('logout-form').submit();">  <i class="nav-icon fas fa-th"></i>  {{ __('Logout') }}</a>
+
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              @csrf
+              </form>
+                  <!-- <span class="right badge badge-danger">New</span> -->
+
+            </li>
           
         </ul>
       </nav>
@@ -244,9 +254,9 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
+<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="{{asset('plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)

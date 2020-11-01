@@ -28,10 +28,10 @@
                   <form class="form-horizontal form-without-legend" role="form"  method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="form-group">
-                      <label for="email" class="col-lg-4 control-label">Email <span class="require">*</span></label>
+                      <label for="username" class="col-lg-4 control-label">Email or Phone No <span class="require">*</span></label>
                       <div class="col-lg-8">
-                        <input type="text" class="form-control" id="email" name="email"  value="{{ old('email') }}">
-                        @error('email')
+                        <input type="text" class="form-control" id="username" name="username"  value="{{ old('username') }}">
+                        @error('username')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

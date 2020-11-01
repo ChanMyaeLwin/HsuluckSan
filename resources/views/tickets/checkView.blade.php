@@ -23,7 +23,7 @@
           <div class="content-search margin-bottom-20">
               <div class="row">
                 <div class="col-md-6">
-                  <h1>Search result for <em>You lucky Ticket</em></h1>
+                  <h1>Check Ticket for <em>times 21</em></h1>
                 </div>
                 <div class="col-md-6">
                   <form method="GET" action="{{ route('tickets.search') }}">
@@ -42,31 +42,21 @@
             <!-- BEGIN PRODUCT LIST -->
             <div class="row product-list">
               <!-- PRODUCT ITEM START -->
-              @foreach ($tickets as $key => $ticket)
-              <div class="col-md-4 col-sm-6 col-xs-12">
+              
+              <div class="col-md-12 col-sm-6 col-xs-12">
                 <div class="product-item">
                   <!-- <div class="pi-img-wrapper">
                     <img src="assets/pages/img/products/model1.jpg" class="img-responsive" alt="Berry Lace Dress">
                   </div> -->
-                  <h3>{{ $ticket->name }}</h3>
-                  @if($ticket->status == 1)
-                     <div class="pi-price pi-available">Available</div>
-                     <button class="btn btn-default add2cart" onclick="buyticket('{{$ticket->id}}')">BUY NOW</button>
-                     
-                  @else
-                     <div class="pi-price pi-unavailable">Unavailable</div>
-                  @endif
+                  <!-- <h3>21</h3> -->
               
                 </div>
               </div>
-              @endforeach
+            
               <!-- PRODUCT ITEM END -->
             </div>
             
             <!-- END PRODUCT LIST -->
-            <!-- BEGIN PAGINATOR -->
-            <div class="row">{!! $tickets->render() !!}</div>
-            <!-- END PAGINATOR -->
           </div>
           <!-- END CONTENT -->
         </div>

@@ -18,9 +18,10 @@ Route::get('/', 'WelcomeController@index')->name('welcome');
 Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 Route::get('/searchView', 'ProductManagement\TicketController@showSearchView')->name('tickets.searchView');
+Route::get('/checkView', 'ProductManagement\TicketController@showcheckView')->name('tickets.checkView');
 Route::get('/search', 'ProductManagement\TicketController@search')->name('tickets.search');
 Route::group(['middleware' => ['auth']], function() {
-    Route::get('/profile', 'HomeController@profile')->name('profile');
+    // Route::get('/profile', 'HomeController@profile')->name('profile');
     Route::post('/change-password', 'HomeController@changePassword')->name('change_password');
 
     Route::resource('roles','UserManagement\RoleController');
@@ -33,9 +34,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/mybalance', 'UserManagement\UserController@userbalance')->name('users.balance');
     Route::get('/myaccount', 'UserManagement\UserController@useraccount')->name('users.account');
     Route::get('/mytickets', 'ProductManagement\TicketController@mytickets')->name('tickets.mytickets');
+    Route::get('/ticketStatus', 'ProductManagement\TicketController@ticketStatus')->name('tickets.ticketStatus');
     Route::get('/buyticket/{id}', 'ProductManagement\TicketController@buyticket')->name('tickets.buynow');
 
     Route::get('/dashboard', 'BackendManagement\DashboardController@index')->name('dashboard');
+    Route::get('/incomereport', 'IncomeController@incomereport')->name('incomereport');
+    Route::get('/balance', 'IncomeController@balance')->name('balance');
 
 });
 
