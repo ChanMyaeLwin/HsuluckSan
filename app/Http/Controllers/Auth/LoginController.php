@@ -47,7 +47,7 @@ class LoginController extends Controller
         } elseif (filter_var($login, FILTER_VALIDATE_EMAIL)) {
             $field = 'email';
         } else {
-            $field = 'username';
+            $field = 'name';
         }
 
         request()->merge([$field => $login]);

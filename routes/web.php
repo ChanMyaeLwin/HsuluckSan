@@ -38,7 +38,7 @@ Route::group(['middleware' => ['auth']], function() {
     
     Route::get('/mybalance', 'UserManagement\UserController@userbalance')->name('users.balance');
     Route::get('/myaccount', 'UserManagement\UserController@useraccount')->name('users.account');
-    Route::get('/mytickets', 'ProductManagement\TicketController@mytickets')->name('tickets.mytickets');
+    Route::get('/mytickets', 'UserManagement\UserController@usertickets')->name('users.usertickets');
     Route::get('/ticketStatus', 'ProductManagement\TicketController@ticketStatus')->name('tickets.ticketStatus');
     Route::get('/buyticket/{id}', 'ProductManagement\TicketController@buyticket')->name('tickets.buynow');
 

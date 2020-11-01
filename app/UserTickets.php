@@ -14,4 +14,8 @@ class UserTickets extends Model
     protected $fillable = [
         'user_id','ticket_id'
     ];
+
+    public function tickets(){
+        return $this->belongsTo('App\Tickets','ticket_id','id');
+    }
 }

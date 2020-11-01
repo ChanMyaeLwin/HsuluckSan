@@ -138,11 +138,15 @@ class TicketController extends Controller
     {
         $tickets = null;
         $ticket_no = null;
-        if($request->input("ticket_no")){
-        $ticket_no = $request->input("ticket_no");
-        $tickets = Tickets::where('name','Like','%'.$ticket_no.'%')
-                ->orderby('status','asc')->paginate(20);
-            }
+        if($request->input("ticket_no"))
+        {
+            $ticket_no = $request->input("ticket_no");
+            $tickets = Tickets::where('name','Like','%'.$ticket_no.'%')
+                    ->orderby('status','asc')->paginate(20);
+        }else
+        {
+            $tickets = Tickets::orderby('status','asc')->paginate(20);
+        }
         return view('tickets.searchView',compact('tickets','ticket_no'));
     }
 
@@ -188,14 +192,6 @@ class TicketController extends Controller
         // return redirect()->route('welcome')->with('success','tickets created successfully');  
     }
 
-    public function mytickets(Request $request)
-    {
-        $userId = Auth::user()->id;
-        $tickets = Tickets::Join('user_ticket','user_ticket.ticket_id','tickets.id')->where('user_ticket.user_id',$userId)
-        ->paginate(5);
-        return view('tickets.mytickets',compact('tickets'))->with('i', ($request->input('page', 1)-1) * 5);
-
-    }
 
     public function ticketStatus(Request $request)
     {

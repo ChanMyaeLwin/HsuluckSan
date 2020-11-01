@@ -86,7 +86,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
           @role('User')
             <a href="{{route('users.account')}}" class="top-cart-info-value">My Account</a>
             <a href="{{route('users.balance')}}" class="top-cart-info-value">My Balance</a>
-           
+            <a href="{{route('users.usertickets')}}" class="top-cart-info-value">My Tickets</a>
           @endrole
           @guest
             <a href="{{ route('login') }}" class="top-cart-info-value">{{ __('Login') }}</a>

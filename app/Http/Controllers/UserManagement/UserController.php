@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\User;
 use App\UserBalance;
+use App\UserTickets;
 use DB;
 use Hash;
 
@@ -130,5 +131,11 @@ class UserController extends Controller
     {
         $user = Auth::user();
         return view('users.account',compact('user'));
+    }
+    public function usertickets()
+    {
+        $user = Auth::user();
+        $usertickets = UserTickets::where('user_id',$user->id)->with('tickets')->paginate(5);
+        return view('users.tickets',compact('user','usertickets'));
     }
 }

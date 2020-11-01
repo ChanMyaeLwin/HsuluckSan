@@ -5,19 +5,7 @@
       <div class="container">
         <!-- BEGIN SIDEBAR & CONTENT -->
         <div class="row margin-bottom-40">
-         <!-- BEGIN SIDEBAR -->
-         <div class="sidebar col-md-3 col-sm-4">
-            <ul class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
-                <li class="active">Latest News</li>
-            </ul>
-            <ul class="list-group margin-bottom-25 sidebar-menu">
-              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Latest News 1</a></li>
-              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Latest News 2</a></li>
-              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Latest News 3</a></li>
-            </ul>
-          </div>
-          <!-- END SIDEBAR -->
+        
           <!-- BEGIN CONTENT -->
           <div class="col-md-9 col-sm-7">
             <div class="content-search margin-bottom-20">
@@ -68,48 +56,22 @@
             <!-- END PAGINATOR -->
           </div>
           <!-- END CONTENT -->
+           <!-- BEGIN SIDEBAR -->
+         <div class="sidebar col-md-3 col-sm-4">
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li class="active">Latest News</li>
+            </ul>
+            <ul class="list-group margin-bottom-25 sidebar-menu">
+              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Latest News 1</a></li>
+              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Latest News 2</a></li>
+              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Latest News 3</a></li>
+            </ul>
+          </div>
+          <!-- END SIDEBAR -->
         </div>
         <!-- END SIDEBAR & CONTENT -->
       </div>
     </div>
-
-    <script type="text/javascript" language="javascript" class="init">
-      function buyticket(value) {
-        const id = value;
-        swal({
-            title: "Confirmation!",
-            text: "Are you sure to buy",
-            textColor: "red",
-            buttons: [true, "Buy!"],
-            icon: "warning",
-        }).then((value) => {
-            if (value) {
-                $.ajax({
-                    method: "get",
-                    url: `/buyticket/${id}`
-                }).done(function (response) {
-                  console.log(response);
-                    if (response['response_code'] == "200") {
-                      const ticket_name = response['ticket_name'];
-                      swal({
-                        title: `You Buyed ${ticket_name}`,
-                      });
-                      window.location.href = `/searchView`;
-                    }else if (response['response_code'] == "400")  {
-                      
-                      swal({
-                        title: "This Ticket is owned by other right now",
-                      });
-                    } else {
-                      swal({
-                        title: "Something Error",
-                      });
-                    };
-                })
-              }
-            })
-      }
-    </script>
       
-
 @endsection

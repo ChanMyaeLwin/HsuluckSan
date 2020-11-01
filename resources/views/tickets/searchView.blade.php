@@ -5,19 +5,7 @@
       <div class="container">
         <!-- BEGIN SIDEBAR & CONTENT -->
         <div class="row margin-bottom-40">
-         <!-- BEGIN SIDEBAR -->
-         <div class="sidebar col-md-3 col-sm-4">
-            <ul class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
-                <li class="active">Latest News</li>
-            </ul>
-            <ul class="list-group margin-bottom-25 sidebar-menu">
-            <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i> Latest News 1</a></li>
-              <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i> Latest News 2</a></li>
-              <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i> Latest News 3</a></li>
-            </ul>
-          </div>
-          <!-- END SIDEBAR -->
+         
           <!-- BEGIN CONTENT -->
           <div class="col-md-9 col-sm-7">
           <div class="content-search margin-bottom-20">
@@ -72,6 +60,19 @@
             @endif
             <!-- END PAGINATOR -->
           </div>
+          <!-- BEGIN SIDEBAR -->
+         <div class="sidebar col-md-3 col-sm-4">
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li class="active">Latest News</li>
+            </ul>
+            <ul class="list-group margin-bottom-25 sidebar-menu">
+            <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i> Latest News 1</a></li>
+              <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i> Latest News 2</a></li>
+              <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i> Latest News 3</a></li>
+            </ul>
+          </div>
+          <!-- END SIDEBAR -->
           <!-- END CONTENT -->
         </div>
         <!-- END SIDEBAR & CONTENT -->

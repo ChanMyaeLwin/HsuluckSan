@@ -5,20 +5,6 @@
       <div class="container">
         <!-- BEGIN SIDEBAR & CONTENT -->
         <div class="row margin-bottom-40">
-          <!-- BEGIN SIDEBAR -->
-          <div class="sidebar col-md-3 col-sm-4">
-            <ul class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
-                <li class="active">Latest News</li>
-            </ul>
-            <ul class="list-group margin-bottom-25 sidebar-menu">
-              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Latest News 1</a></li>
-              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Latest News 2</a></li>
-              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Latest News 3</a></li>
-            </ul>
-          </div>
-          <!-- END SIDEBAR -->
-
           <!-- BEGIN CONTENT -->
           <div class="col-md-9 col-sm-9">
             <h1>Register</h1>
@@ -113,6 +99,19 @@
             </div>
           </div>
           <!-- END CONTENT -->
+           <!-- BEGIN SIDEBAR -->
+           <div class="sidebar col-md-3 col-sm-4">
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li class="active">Latest News</li>
+            </ul>
+            <ul class="list-group margin-bottom-25 sidebar-menu">
+              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Latest News 1</a></li>
+              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Latest News 2</a></li>
+              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Latest News 3</a></li>
+            </ul>
+          </div>
+          <!-- END SIDEBAR -->
         </div>
         <!-- END SIDEBAR & CONTENT -->
       </div>
