@@ -29,6 +29,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('users','UserManagement\UserController');
     Route::resource('products','ProductManagement\ProductController');
     Route::resource('tickets','ProductManagement\TicketController');
+    Route::get('/multicreate', 'ProductManagement\TicketController@multicreate')->name('tickets.multicreate');
+    Route::post('/multistore', 'ProductManagement\TicketController@multistore')->name('tickets.multistore');
+
     Route::resource('times','ProductManagement\TimesController');
     Route::resource('incomes','IncomeController');
     Route::resource('balances','BalanceController');

@@ -135,7 +135,7 @@ class UserController extends Controller
     public function usertickets()
     {
         $user = Auth::user();
-        $usertickets = UserTickets::where('user_id',$user->id)->with('tickets')->paginate(5);
+        $usertickets = UserTickets::where('user_id',$user->id)->with('tickets')->orderby('created_at','desc')->paginate(5);
         return view('users.tickets',compact('user','usertickets'));
     }
 }

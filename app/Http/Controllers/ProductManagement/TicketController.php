@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ProductManagement;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Times;
 use App\Tickets;
 use App\UserTickets;
 use App\User;
@@ -39,7 +40,8 @@ class TicketController extends Controller
      */
     public function create(Request $request)
     {
-        return view('tickets.create');
+        $times = Times::latest()->first();
+        return view('tickets.create',compact('times'));
     }
 
     /**
@@ -49,6 +51,31 @@ class TicketController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+    {
+        $times_id = Times::latest()->first()->id;
+        $this->validate($request, [
+            'name' => [
+                'required',
+                Rule::unique('tickets')->where(function($query) {
+                  $query->where('times', '<>', $times_id);
+    })
+   ],
+        ]);
+        $tickets = Tickets::create(['name' => $request->input('name'),
+                                    'owner'=> Auth::user()->id,
+                                    'times_id' => $request->input('times_id'),
+                                    'status'=>'1']);
+
+        return redirect()->route('tickets.index')->with('success','tickets created successfully');
+    }
+
+    public function multicreate(Request $request)
+    {
+        $times = Times::latest()->first();
+        return view('tickets.multicreate',compact('times'));
+    }
+
+    public function multistore(Request $request)
     {
         $this->validate($request, [
             'name' => 'required|unique:tickets,name',

@@ -29,7 +29,7 @@
             <!-- general form elements -->
             <div class="card card-success">
               <div class="card-header">
-                <h3 class="card-title">Create Ticket</h3>
+                <h3 class="card-title">Create Multi Ticket</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -43,15 +43,19 @@
                 </ul>
                 </div>
                 @endif
-                {!! Form::open(array('route' => 'tickets.store','method'=>'POST')) !!}
+                {!! Form::open(array('route' => 'tickets.multistore','method'=>'POST')) !!}
                 <div class="card-body">
                   <div class="form-group">
                     <label for="Name">Times</label>
                     {!! Form::text('times_id', $times->name, array('placeholder' => 'Times','value'=>$times->id,'class' => 'form-control','readonly' => 'true')) !!}
                   </div>
                   <div class="form-group">
-                    <label for="Name">Name</label>
+                    <label for="Name">Start Name</label>
                     {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                  </div>
+                  <div class="form-group">
+                    <label for="Name">Quantity</label>
+                    {!! Form::text('quantity', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
                   </div>
                 </div>
                 <!-- /.card-body -->

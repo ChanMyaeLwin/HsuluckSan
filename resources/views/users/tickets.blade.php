@@ -32,7 +32,7 @@
                         <tr>
                         
                           <td class="compare-info">
-                            {{date('d-m-Y', strtotime($ticket->created_at))}}
+                            {{date('d-m-Y h:m', strtotime($ticket->created_at))}}
                           </td>
                           <td class="compare-info">
                           {{$ticket->tickets->name}}

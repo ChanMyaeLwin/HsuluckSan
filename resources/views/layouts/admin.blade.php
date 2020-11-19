@@ -146,6 +146,12 @@
                           <p>Create</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('tickets.multicreate') }}" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Multi Create</p>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item has-treeview">
@@ -164,7 +170,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('tickets.create') }}" class="nav-link">
+                        <a href="{{ route('times.create') }}" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Create</p>
                         </a>
